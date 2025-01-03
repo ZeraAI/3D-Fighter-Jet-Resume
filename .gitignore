@@ -39,7 +39,3 @@ Thumbs.db
 
 # Exclude GLB models if not required to be tracked
 *.glb
-
-# Ignore generated styles or cached files
-styles/Home.module.css
-styles/*.css.map
