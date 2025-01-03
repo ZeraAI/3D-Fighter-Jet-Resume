@@ -1,0 +1,31 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZeraAI/3D-Fighter-Jet-Resume.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZeraAI/3D-Fighter-Jet-Resume/issues"
+  },
+  "homepage": "https://github.com/ZeraAI/3D-Fighter-Jet-Resume#readme",
+  "dependencies": {
+    "@react-three/drei": "^9.120.5",
+    "@react-three/fiber": "^8.17.10",
+    "next": "^13.4.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.153.0"
+  }
+}
