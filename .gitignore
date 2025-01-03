@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+.pnp/
+.pnp.js
+
+# Build output
+.next/
+out/
+dist/
+
+# Static files
+public/static/
+
+# Temporary files
+*.swp
+*.tmp
+*.temp
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.iml
+
+# Exclude GLB models if not required to be tracked
+*.glb
+
+# Ignore generated styles or cached files
+styles/Home.module.css
+styles/*.css.map
