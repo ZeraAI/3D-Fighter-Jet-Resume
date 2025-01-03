@@ -36,6 +36,3 @@ Thumbs.db
 .vscode/
 .idea/
 *.iml
-
-# Exclude GLB models if not required to be tracked
-*.glb
