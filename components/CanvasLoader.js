@@ -1,4 +1,3 @@
-// components/CanvasLoader.js
 import React from 'react';
 import { Html, useProgress } from '@react-three/drei';
 
