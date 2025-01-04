@@ -119,48 +119,79 @@ const FighterJet = ({ isMobile }) => {
 };
 
 // Header Component
-const Header = () => (
-  <div
-    style={{
-      position: "absolute",
-      top: "30%",
-      width: "100%",
-      textAlign: "center",
-      zIndex: 1000,
-      fontFamily: "'Inter', sans-serif",
-    }}
-  >
-    <h1
+const Header = () => {
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          } else {
+            entry.target.classList.remove("show");
+          }
+        });
+      },
+      { threshold: 0.1 } // Adjust visibility threshold as needed
+    );
+
+    if (headerRef.current) {
+      observer.observe(headerRef.current);
+    }
+
+    return () => {
+      if (headerRef.current) {
+        observer.unobserve(headerRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <div
+      ref={headerRef}
+      className="hidden" // Apply the `hidden` class initially
       style={{
-        fontSize: "6rem",
-        fontWeight: 700,
-        color: "white",
-        textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        position: "absolute",
+        top: "30%",
+        width: "100%",
+        textAlign: "center",
+        zIndex: 1000,
+        fontFamily: "'Inter', sans-serif",
       }}
     >
-      <a
-        href="https://www.linkedin.com/in/woobin-park/"
+      <h1
         style={{
-          textDecoration: "none",
+          fontSize: "6rem",
+          fontWeight: 700,
           color: "white",
+          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
         }}
       >
-        Woo Bin Park
-      </a>
-    </h1>
-    <p
-      style={{
-        fontSize: "2.5rem",
-        fontWeight: 400,
-        color: "white",
-        marginTop: "0.5rem",
-        textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-      }}
-    >
-      Software Engineer | Security Engineer
-    </p>
-  </div>
-);
+        <a
+          href="https://www.linkedin.com/in/woobin-park/"
+          style={{
+            textDecoration: "none",
+            color: "white",
+          }}
+        >
+          Woo Bin Park
+        </a>
+      </h1>
+      <p
+        style={{
+          fontSize: "2.5rem",
+          fontWeight: 400,
+          color: "white",
+          marginTop: "0.5rem",
+          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        Software Engineer | Security Engineer
+      </p>
+    </div>
+  );
+};
 
 // Cherry Blossom Petal Component
 const CherryBlossoms = () => {
