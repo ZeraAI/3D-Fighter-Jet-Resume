@@ -122,6 +122,57 @@ const FighterJet = ({ isMobile }) => {
   );
 };
 
+// Header Component
+const Header = () => (
+  <>
+    {/* Name: Always on top */}
+    <div
+      style={{
+        position: "absolute",
+        top: "30%", // Adjust this to place it higher
+        width: "100%",
+        textAlign: "center",
+        zIndex: 1000, // Ensure it stays on top of everything
+        pointerEvents: "auto", // Allow interaction
+      }}
+    >
+      <h1
+        style={{
+          fontSize: "6rem", // Increased font size
+          fontWeight: 700,
+          color: "white",
+          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        <a
+          href="https://www.linkedin.com/in/woobin-park/" // Replace link here
+          style={{
+            textDecoration: "none",
+            color: "white",
+            transition: "color 0.3s ease",
+            cursor: "pointer", // Ensure it looks clickable
+          }}
+          onMouseEnter={(e) => (e.target.style.color = "#C9A86A")} // Elegant gold on hover
+          onMouseLeave={(e) => (e.target.style.color = "white")} // Revert color after hover
+        >
+          Woo Bin Park
+        </a>
+      </h1>
+      <p
+        style={{
+          fontSize: "2.5rem", // Slightly larger for better alignment
+          fontWeight: 400,
+          color: "white",
+          marginTop: "0.5rem", // Proper spacing under the name
+          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        Software Engineer | Security Engineer
+      </p>
+    </div>
+  </>
+);
+
 // Main Canvas component for rendering the scene
 const FighterJetCanvas = () => {
   const [isMobile, setIsMobile] = useState(false); // State for detecting mobile screens
@@ -146,6 +197,7 @@ const FighterJetCanvas = () => {
         height: "100vh", // Full viewport height
       }}
     >
+      <Header /> {/* Display the header */}
       <Canvas
         frameloop="always" // Continuous rendering for smooth animations
         shadows // Enable shadows for depth

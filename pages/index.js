@@ -36,7 +36,7 @@ const Home = () => {
             textAlign: "center",
           }}
         >
-          Woo Bin Park
+
         </h1>
         <p
           style={{
@@ -47,7 +47,7 @@ const Home = () => {
             textAlign: "center",
           }}
         >
-          Software Engineer | Security Engineer
+
         </p>
       </section>
 
