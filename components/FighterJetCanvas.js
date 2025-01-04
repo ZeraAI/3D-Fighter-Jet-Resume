@@ -11,9 +11,9 @@ const SceneLights = () => (
   <>
     <hemisphereLight intensity={0.4} groundColor="#2563EB" />
     <spotLight
-      position={[0, 50, 10]} // Position above and slightly in front of the scene
+      position={[0, 50, 10]}
       angle={0.3}
-      penumbra={1} // Controls the softness of the spotlight's edges
+      penumbra={1}
       intensity={1.5}
       castShadow
       shadow-mapSize={1024}
@@ -22,26 +22,22 @@ const SceneLights = () => (
   </>
 );
 
-// Cloud component with fixed positions and customizable colors
+// Cloud component with fixed positions
 const Clouds = () => {
   const fixedCloudPositions = [
-    [-5, 4, -3],
-    [3, 6, -5],
+    [-5, 9, -3],
+    [6, -1, -5],
     [8, 2, 4],
     [-6, 3, 7],
-    [2, 7, -8],
+    [-9, 7, -8],
   ];
-
-  // Define the cloud color
-  const cloudColor = "#FFFFFF";
 
   return fixedCloudPositions.map((pos, index) => {
     const cloudRef = useRef();
 
-    // Add subtle animation to clouds
     useFrame(() => {
       if (cloudRef.current) {
-        cloudRef.current.rotation.y += 0.003; // Slow rotation for airy movement
+        cloudRef.current.rotation.y += 0.003;
       }
     });
 
@@ -56,33 +52,32 @@ const Clouds = () => {
         depth={2}
         segments={20}
       >
-        <meshStandardMaterial attach="material" color={cloudColor} />
+        <meshStandardMaterial attach="material" color="#FFFFFF" transparent />
       </Cloud>
     );
   });
 };
 
-// Fighter Jet model loader and interactive animation
+// Fighter Jet model loader and animation
 const PlaneAnimation = ({ model, isMobile }) => {
   const planeRef = useRef();
 
   useFrame(({ clock }) => {
     if (planeRef.current) {
       const t = clock.getElapsedTime();
-      // Smooth U-turn animation logic
       planeRef.current.position.z = Math.sin(t) * 2;
       planeRef.current.position.y = Math.cos(t) * 1.5;
-      planeRef.current.rotation.y = Math.sin(t) * 0.5; // Tilts during the turn
+      planeRef.current.rotation.y = Math.sin(t) * 0.5;
     }
   });
 
   return (
     <primitive
       ref={planeRef}
-      object={model} // Load the 3D model
-      scale={isMobile ? 0.3 : 0.525} // Adjust scale for mobile devices
-      position={isMobile ? [0, 0.15, 0] : [0, 2.55, 0]} // Adjust position
-      rotation={[-0.01, 2, -0.1]} // Slight rotation for a dynamic appearance
+      object={model}
+      scale={isMobile ? 0.3 : 0.525}
+      position={isMobile ? [0, 0.15, 0] : [0, 2.55, 0]}
+      rotation={[-0.01, 2, -0.1]}
     />
   );
 };
@@ -94,7 +89,7 @@ const FighterJet = ({ isMobile }) => {
   useEffect(() => {
     const loader = new GLTFLoader();
     loader.load(
-      "/fighter.glb", // Ensure this path is correct
+      "/fighter.glb",
       (gltf) => {
         const loadedModel = gltf.scene;
         loadedModel.traverse((child) => {
@@ -116,8 +111,8 @@ const FighterJet = ({ isMobile }) => {
 
   return (
     <>
-      <SceneLights /> {/* Add lights to the scene */}
-      <Clouds /> {/* Add clouds to the scene */}
+      <SceneLights />
+      <Clouds />
       {model && <PlaneAnimation model={model} isMobile={isMobile} />}
     </>
   );
@@ -125,77 +120,68 @@ const FighterJet = ({ isMobile }) => {
 
 // Header Component
 const Header = () => (
-  <>
-    {/* Name: Always on top */}
-    <div
+  <div
+    style={{
+      position: "absolute",
+      top: "30%",
+      width: "100%",
+      textAlign: "center",
+      zIndex: 1000,
+      fontFamily: "'Inter', sans-serif",
+    }}
+  >
+    <h1
       style={{
-        position: "absolute",
-        top: "30%", // Adjust this to place it higher
-        width: "100%",
-        textAlign: "center",
-        zIndex: 1000, // Ensure it stays on top of everything
-        pointerEvents: "auto", // Allow interaction
+        fontSize: "6rem",
+        fontWeight: 700,
+        color: "white",
+        textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
       }}
     >
-      <h1
+      <a
+        href="https://www.linkedin.com/in/woobin-park/"
         style={{
-          fontSize: "6rem", // Increased font size
-          fontWeight: 700,
+          textDecoration: "none",
           color: "white",
-          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
         }}
       >
-        <a
-          href="https://www.linkedin.com/in/woobin-park/" // Replace link here
-          style={{
-            textDecoration: "none",
-            color: "white",
-            transition: "color 0.3s ease",
-            cursor: "pointer", // Ensure it looks clickable
-          }}
-          onMouseEnter={(e) => (e.target.style.color = "#C9A86A")} // Elegant gold on hover
-          onMouseLeave={(e) => (e.target.style.color = "white")} // Revert color after hover
-        >
-          Woo Bin Park
-        </a>
-      </h1>
-      <p
-        style={{
-          fontSize: "2.5rem", // Slightly larger for better alignment
-          fontWeight: 400,
-          color: "white",
-          marginTop: "0.5rem", // Proper spacing under the name
-          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-        }}
-      >
-        Software Engineer | Security Engineer
-      </p>
-    </div>
-  </>
+        Woo Bin Park
+      </a>
+    </h1>
+    <p
+      style={{
+        fontSize: "2.5rem",
+        fontWeight: 400,
+        color: "white",
+        marginTop: "0.5rem",
+        textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+      }}
+    >
+      Software Engineer | Security Engineer
+    </p>
+  </div>
 );
 
 // Cherry Blossom Petal Component
 const CherryBlossoms = () => {
   const groupRef = useRef();
-  const particles = 200; // Number of petals
-  const positions = new Float32Array(particles * 3); // x, y, z for each petal
-  const speeds = new Float32Array(particles); // Falling speed for each petal
+  const particles = 200;
+  const positions = new Float32Array(particles * 3);
+  const speeds = new Float32Array(particles);
 
-  // Initialize petal positions and speeds
   for (let i = 0; i < particles; i++) {
-    positions[i * 3] = Math.random() * 20 - 10; // x
-    positions[i * 3 + 1] = Math.random() * 15; // y
-    positions[i * 3 + 2] = Math.random() * 20 - 10; // z
-    speeds[i] = Math.random() * 0.01 + 0.005; // Speed
+    positions[i * 3] = Math.random() * 20 - 10;
+    positions[i * 3 + 1] = Math.random() * 15;
+    positions[i * 3 + 2] = Math.random() * 20 - 10;
+    speeds[i] = Math.random() * 0.01 + 0.005;
   }
 
-  // Update petal positions
   useFrame(() => {
     if (groupRef.current) {
       const particles = groupRef.current.geometry.attributes.position;
       for (let i = 0; i < particles.count; i++) {
         let y = particles.getY(i) - speeds[i];
-        particles.setY(i, y < -5 ? 15 : y); // Reset y if it falls below threshold
+        particles.setY(i, y < -5 ? 15 : y);
       }
       particles.needsUpdate = true;
     }
@@ -213,7 +199,7 @@ const CherryBlossoms = () => {
       </bufferGeometry>
       <pointsMaterial
         map={new THREE.TextureLoader().load("/cherry-blossom.png")}
-        size={1.5} // Increased size of petals
+        size={1.5}
         transparent={true}
         alphaTest={0.5}
       />
@@ -221,20 +207,19 @@ const CherryBlossoms = () => {
   );
 };
 
-
-// Main Canvas component for rendering the scene
+// Main Canvas component
 const FighterJetCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false); // State for detecting mobile screens
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 500px)"); // Media query for responsiveness
-    setIsMobile(mediaQuery.matches); // Set initial state
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    setIsMobile(mediaQuery.matches);
 
     const handleMediaQueryChange = (event) => {
       setIsMobile(event.matches);
     };
 
-    mediaQuery.addEventListener("change", handleMediaQueryChange); // Listen for screen size changes
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
 
     return () => mediaQuery.removeEventListener("change", handleMediaQueryChange);
   }, []);
@@ -242,33 +227,23 @@ const FighterJetCanvas = () => {
   return (
     <div
       style={{
-        background: "linear-gradient(180deg, #2563EB 0%, #93C5FD 100%)", // Gradient background
-        height: "100vh", // Full viewport height
+        background: "linear-gradient(180deg, #2563EB 0%, #93C5FD 100%)",
+        height: "100vh",
       }}
     >
-      <Header /> {/* Display the header */}
-      <Canvas
-        frameloop="always" // Continuous rendering for smooth animations
-        shadows // Enable shadows for depth
-        dpr={[1, 2]} // Set device pixel ratio
-        camera={{ position: [20, 3, 5], fov: 25 }} // Camera setup
-      >
+      <Header />
+      <Canvas frameloop="always" shadows dpr={[1, 2]} camera={{ position: [20, 3, 5], fov: 25 }}>
         <Suspense fallback={<CanvasLoader />}>
-          <OrbitControls
-            enableZoom={false} // Disable zoom to lock view
-            maxPolarAngle={Math.PI / 2} // Limit vertical rotation
-            minPolarAngle={Math.PI / 2}
-          />
-          <SceneLights /> {/* Add lights */}
-          <Clouds /> {/* Add clouds */}
-          <FighterJet isMobile={isMobile} /> {/* Add the fighter jet */}
-          <CherryBlossoms /> {/* Add cherry blossom particles */}
+          <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
+          <SceneLights />
+          <Clouds />
+          <FighterJet isMobile={isMobile} />
+          <CherryBlossoms />
         </Suspense>
-        <Preload all /> {/* Preload all assets for optimization */}
+        <Preload all />
       </Canvas>
     </div>
   );
 };
-
 
 export default FighterJetCanvas;

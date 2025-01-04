@@ -2,8 +2,13 @@ body {
     margin: 0;
     font-family: "Inter", sans-serif;
     background-color: #f8fafc;
+    cursor: none; /* Hides the default cursor */
   }
-  
+
+  a, button {
+    cursor: none; /* Hide the default browser cursor for clickable elements */
+  }
+
   .hero {
     text-align: center;
     padding: 3rem 1rem;
