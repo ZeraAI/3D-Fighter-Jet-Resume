@@ -32,7 +32,7 @@ const Clouds = () => {
   ];
 
   // Define the cloud color
-  const cloudColor = "#FFFFFF"; // Unfortunately not supported so will have to adjust opacity instead
+  const cloudColor = "#FFFFFF";
 
   return fixedCloudPositions.map((pos, index) => {
     const cloudRef = useRef();
@@ -40,11 +40,9 @@ const Clouds = () => {
     // Add subtle animation to clouds
     useFrame(() => {
       if (cloudRef.current) {
-        cloudRef.current.position.x += Math.sin(Date.now() * 0.001) * 0.002; // Subtle horizontal movement
-        cloudRef.current.position.y += Math.cos(Date.now() * 0.001) * 0.002; // Subtle vertical movement
+        cloudRef.current.rotation.y += 0.003; // Slow rotation for airy movement
       }
     });
-    
 
     return (
       <Cloud
@@ -52,19 +50,43 @@ const Clouds = () => {
         ref={cloudRef}
         position={pos}
         speed={0.2}
-        opacity={0.0225}
+        opacity={0.025}
         width={5}
         depth={2}
         segments={20}
       >
-        {/* Override the material color */}
         <meshStandardMaterial attach="material" color={cloudColor} />
       </Cloud>
     );
   });
 };
 
-// Fighter Jet model loader and renderer
+// Fighter Jet model loader and interactive animation
+const PlaneAnimation = ({ model, isMobile }) => {
+  const planeRef = useRef();
+
+  useFrame(({ clock }) => {
+    if (planeRef.current) {
+      const t = clock.getElapsedTime();
+      // Smooth U-turn animation logic
+      planeRef.current.position.z = Math.sin(t) * 2;
+      planeRef.current.position.y = Math.cos(t) * 1.5;
+      planeRef.current.rotation.y = Math.sin(t) * 0.5; // Tilts during the turn
+    }
+  });
+
+  return (
+    <primitive
+      ref={planeRef}
+      object={model} // Load the 3D model
+      scale={isMobile ? 0.3 : 0.525} // Adjust scale for mobile devices
+      position={isMobile ? [0, 0.15, 0] : [0, 2.55, 0]} // Adjust position
+      rotation={[-0.01, 2, -0.1]} // Slight rotation for a dynamic appearance
+    />
+  );
+};
+
+// Fighter Jet loader and renderer
 const FighterJet = ({ isMobile }) => {
   const [model, setModel] = useState(null);
 
@@ -94,15 +116,8 @@ const FighterJet = ({ isMobile }) => {
   return (
     <>
       <SceneLights /> {/* Add lights to the scene */}
-      <Clouds /> {/* Add the clouds to the scene */}
-      {model && (
-        <primitive
-          object={model} // Load the 3D model
-          scale={isMobile ? 0.3 : 0.525} // Adjust scale for mobile devices
-          position={isMobile ? [0, 0.15, 0] : [0, 2.55, 0]} // Adjust position
-          rotation={[-0.01, 2, -0.1]} // Slight rotation for a dynamic appearance
-        />
-      )}
+      <Clouds /> {/* Add clouds to the scene */}
+      {model && <PlaneAnimation model={model} isMobile={isMobile} />}
     </>
   );
 };
