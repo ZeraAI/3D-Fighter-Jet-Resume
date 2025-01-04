@@ -3,6 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload } from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Cloud } from "@react-three/drei";
+import * as THREE from "three"; 
 import CanvasLoader from "./CanvasLoader";
 
 // Lighting setup for the 3D scene
@@ -173,6 +174,54 @@ const Header = () => (
   </>
 );
 
+// Cherry Blossom Petal Component
+const CherryBlossoms = () => {
+  const groupRef = useRef();
+  const particles = 200; // Number of petals
+  const positions = new Float32Array(particles * 3); // x, y, z for each petal
+  const speeds = new Float32Array(particles); // Falling speed for each petal
+
+  // Initialize petal positions and speeds
+  for (let i = 0; i < particles; i++) {
+    positions[i * 3] = Math.random() * 20 - 10; // x
+    positions[i * 3 + 1] = Math.random() * 15; // y
+    positions[i * 3 + 2] = Math.random() * 20 - 10; // z
+    speeds[i] = Math.random() * 0.01 + 0.005; // Speed
+  }
+
+  // Update petal positions
+  useFrame(() => {
+    if (groupRef.current) {
+      const particles = groupRef.current.geometry.attributes.position;
+      for (let i = 0; i < particles.count; i++) {
+        let y = particles.getY(i) - speeds[i];
+        particles.setY(i, y < -5 ? 15 : y); // Reset y if it falls below threshold
+      }
+      particles.needsUpdate = true;
+    }
+  });
+
+  return (
+    <points ref={groupRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          array={positions}
+          count={particles}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        map={new THREE.TextureLoader().load("/cherry-blossom.png")}
+        size={1.5} // Increased size of petals
+        transparent={true}
+        alphaTest={0.5}
+      />
+    </points>
+  );
+};
+
+
 // Main Canvas component for rendering the scene
 const FighterJetCanvas = () => {
   const [isMobile, setIsMobile] = useState(false); // State for detecting mobile screens
@@ -210,12 +259,16 @@ const FighterJetCanvas = () => {
             maxPolarAngle={Math.PI / 2} // Limit vertical rotation
             minPolarAngle={Math.PI / 2}
           />
-          <FighterJet isMobile={isMobile} />
+          <SceneLights /> {/* Add lights */}
+          <Clouds /> {/* Add clouds */}
+          <FighterJet isMobile={isMobile} /> {/* Add the fighter jet */}
+          <CherryBlossoms /> {/* Add cherry blossom particles */}
         </Suspense>
         <Preload all /> {/* Preload all assets for optimization */}
       </Canvas>
     </div>
   );
 };
+
 
 export default FighterJetCanvas;
