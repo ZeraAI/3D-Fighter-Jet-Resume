@@ -1,21 +1,84 @@
-/* Reset default browser margins and padding */
-html, body {
+body {
     margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+    font-family: "Inter", sans-serif;
+    background-color: #f8fafc;
   }
   
-  /* Ensure Next.js wrapper fills the viewport */
-  #__next {
-    width: 100%;
-    height: 100%;
+  .hero {
+    text-align: center;
+    padding: 3rem 1rem;
   }
   
-  /* Styling for the Canvas background */
-  .canvasContainer {
-    background: linear-gradient(180deg, #2563EB 0%, #93C5FD 100%);
-    width: 100%;
-    height: 100%;
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #111827;
   }
+  
+  .hero p {
+    font-size: 1.25rem;
+    color: #4b5563;
+  }
+  
+  .section {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+  
+  .section-content {
+    font-size: 1rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  footer {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+    background-color: #f8fafc;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .icons a:hover {
+    transform: scale(1.2);
+  }
+  
+  button {
+    background-color: #2563eb; /* Primary blue color */
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #1d4ed8; /* Darker blue for hover */
+    transform: translateY(-2px); /* Slight lift */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  button:active {
+    transform: translateY(0); /* Remove lift on click */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  }
+  
   

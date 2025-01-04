@@ -1,10 +1,8 @@
-// Hero
-import React, { Suspense, useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import React, { Suspense, useEffect, useState, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload } from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { motion } from "framer-motion";
-
+import { Cloud } from "@react-three/drei";
 import CanvasLoader from "./CanvasLoader";
 
 // Lighting setup for the 3D scene
@@ -23,7 +21,50 @@ const SceneLights = () => (
   </>
 );
 
-// Fighter Jet model loader and renderer with enhanced animations
+// Cloud component with fixed positions and customizable colors
+const Clouds = () => {
+  const fixedCloudPositions = [
+    [-5, 4, -3],
+    [3, 6, -5],
+    [8, 2, 4],
+    [-6, 3, 7],
+    [2, 7, -8],
+  ];
+
+  // Define the cloud color
+  const cloudColor = "#FFFFFF"; // Unfortunately not supported so will have to adjust opacity instead
+
+  return fixedCloudPositions.map((pos, index) => {
+    const cloudRef = useRef();
+
+    // Add subtle animation to clouds
+    useFrame(() => {
+      if (cloudRef.current) {
+        cloudRef.current.position.x += Math.sin(Date.now() * 0.001) * 0.002; // Subtle horizontal movement
+        cloudRef.current.position.y += Math.cos(Date.now() * 0.001) * 0.002; // Subtle vertical movement
+      }
+    });
+    
+
+    return (
+      <Cloud
+        key={index}
+        ref={cloudRef}
+        position={pos}
+        speed={0.2}
+        opacity={0.0225}
+        width={5}
+        depth={2}
+        segments={20}
+      >
+        {/* Override the material color */}
+        <meshStandardMaterial attach="material" color={cloudColor} />
+      </Cloud>
+    );
+  });
+};
+
+// Fighter Jet model loader and renderer
 const FighterJet = ({ isMobile }) => {
   const [model, setModel] = useState(null);
 
@@ -53,24 +94,14 @@ const FighterJet = ({ isMobile }) => {
   return (
     <>
       <SceneLights /> {/* Add lights to the scene */}
+      <Clouds /> {/* Add the clouds to the scene */}
       {model && (
-        <motion.group
-          // Enhanced animation for the plane
-          initial={{ opacity: 0, scale: 0.8, rotateY: 0 }}
-          animate={{ opacity: 1, scale: 1, rotateY: 360 }}
-          transition={{
-            duration: 2, // Total animation time
-            ease: "easeOut",
-            rotateY: { type: "spring", stiffness: 100, damping: 10 },
-          }}
-        >
-          <primitive
-            object={model} // Load the 3D model
-            scale={isMobile ? 0.3 : 0.525} // Adjust scale for mobile devices
-            position={isMobile ? [0, 0.15, 0] : [0, 2.55, 0]} // Adjust position
-            rotation={[-0.01, 2, -0.1]} // Slight rotation for a dynamic appearance
-          />
-        </motion.group>
+        <primitive
+          object={model} // Load the 3D model
+          scale={isMobile ? 0.3 : 0.525} // Adjust scale for mobile devices
+          position={isMobile ? [0, 0.15, 0] : [0, 2.55, 0]} // Adjust position
+          rotation={[-0.01, 2, -0.1]} // Slight rotation for a dynamic appearance
+        />
       )}
     </>
   );
