@@ -1,0 +1,21 @@
+/* Reset default browser margins and padding */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Ensure Next.js wrapper fills the viewport */
+  #__next {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Styling for the Canvas background */
+  .canvasContainer {
+    background: linear-gradient(180deg, #2563EB 0%, #93C5FD 100%);
+    width: 100%;
+    height: 100%;
+  }
+  
