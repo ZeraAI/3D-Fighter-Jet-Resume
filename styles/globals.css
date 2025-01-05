@@ -3,96 +3,117 @@ body {
     font-family: "Inter", sans-serif;
     background-color: #f8fafc;
     cursor: none; /* Hides the default cursor */
-  }
+}
 
-  a, button {
-    cursor: none; /* Hide the default browser cursor for clickable elements */
-  }
+a, button {
+  cursor: none; /* Hide the default browser cursor for clickable elements */
+}
 
-  .hero {
-    text-align: center;
-    padding: 3rem 1rem;
-  }
-  
-  .hero h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #111827;
-  }
-  
-  .hero p {
-    font-size: 1.25rem;
-    color: #4b5563;
-  }
-  
-  .section {
-    padding: 2rem 1rem;
-    text-align: center;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #1f2937;
-  }
-  
-  .section-content {
-    font-size: 1rem;
-    color: #6b7280;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  footer {
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.875rem;
-    color: #6b7280;
-    background-color: #f8fafc;
-    border-top: 1px solid #e5e7eb;
-  }
-  
-  .icons {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
-  
-  .icons a:hover {
-    transform: scale(1.2);
-  }
-  
-  button {
-    background-color: #2563eb; /* Primary blue color */
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #1d4ed8; /* Darker blue for hover */
-    transform: translateY(-2px); /* Slight lift */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  }
-  
-  button:active {
-    transform: translateY(0); /* Remove lift on click */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadow */
-  }
-  
-  /* For my name to fade into place */
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: #4b5563;
+}
+
+.section {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.section-content {
+  font-size: 1rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+footer {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+  background-color: #f8fafc;
+  border-top: 1px solid #e5e7eb;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.icons a:hover {
+  transform: scale(1.2);
+}
+
+button {
+  background-color: #2563eb; /* Primary blue color */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: #1d4ed8; /* Darker blue for hover */
+  transform: translateY(-2px); /* Slight lift */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+button:active {
+  transform: translateY(0); /* Remove lift on click */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadow */
+}
+
+/* For my name to fade into place */
+.hidden {
+  opacity: 0;
+  transition: all 4.5s; 
+}
+
+.show {
+  opacity: 1;
+}
+
+@media(prefers-reduced-motion) {
   .hidden {
-    opacity: 0;
-    transition: all 4.5s; 
-  }
-  
-  .show {
     opacity: 1;
+    transition: none;
   }
-  
+}
+
+/* For accomplishments or certificates */
+/* Fly-in Animation */
+.fly-in {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s ease-in-out;
+}
+
+.fly-in-show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}

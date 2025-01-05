@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FighterJetCanvas from "../components/FighterJetCanvas";
 
 // Main Website Component
 const Home = () => {
+  useEffect(() => {
+    // Intersection Observer logic
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fly-in-show"); // Add the animation class
+          } else {
+            entry.target.classList.remove("fly-in-show"); // Remove it when out of view
+          }
+        });
+      },
+      { threshold: 0.2 } // Adjust threshold as needed
+    );
+
+    // Select all elements with the "fly-in" class
+    const elements = document.querySelectorAll(".fly-in");
+    elements.forEach((el) => observer.observe(el));
+
+    // Cleanup the observer when the component unmounts
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   return (
     <div style={{ margin: 0, padding: 0, overflowX: "hidden" }}>
       {/* Hero Section */}
@@ -35,9 +60,7 @@ const Home = () => {
             fontSize: "3rem",
             textAlign: "center",
           }}
-        >
-
-        </h1>
+        ></h1>
         <p
           style={{
             color: "#fff",
@@ -46,9 +69,7 @@ const Home = () => {
             marginTop: "1rem",
             textAlign: "center",
           }}
-        >
-
-        </p>
+        ></p>
       </section>
 
       {/* About Me Section */}
@@ -85,35 +106,31 @@ const Home = () => {
             flexWrap: "wrap",
           }}
         >
-          <div style={{ maxWidth: "300px", textAlign: "left" }}>
-            <h3>Project 1: Network Monitoring Tool</h3>
-            <p>
-              A tool for monitoring network interfaces, switching automatically
-              to optimize connectivity.
-            </p>
-            <a href="#" style={{ color: "#2563EB" }}>
-              Learn More
-            </a>
-          </div>
-          <div style={{ maxWidth: "300px", textAlign: "left" }}>
-            <h3>Project 2: Portfolio Website</h3>
-            <p>
-              A minimalistic and interactive personal website showcasing
-              professional achievements.
-            </p>
-            <a href="#" style={{ color: "#2563EB" }}>
-              Learn More
-            </a>
-          </div>
-          <div style={{ maxWidth: "300px", textAlign: "left" }}>
-            <h3>Project 3: AI Intrusion Detection</h3>
-            <p>
-              Developed an AI-based system to detect and prevent security
-              breaches in real-time.
-            </p>
-            <a href="#" style={{ color: "#2563EB" }}>
-              Learn More
-            </a>
+          <div className="projects">
+            <div className="fly-in project">
+              <h3>Project 1: Network Monitoring Tool</h3>
+              <p>
+                A tool for monitoring network interfaces, switching
+                automatically to optimize connectivity.
+              </p>
+              <a href="#">Learn More</a>
+            </div>
+            <div className="fly-in project">
+              <h3>Project 2: Portfolio Website</h3>
+              <p>
+                A minimalistic and interactive personal website showcasing
+                professional achievements.
+              </p>
+              <a href="#">Learn More</a>
+            </div>
+            <div className="fly-in project">
+              <h3>Project 3: AI Intrusion Detection</h3>
+              <p>
+                Developed an AI-based system to detect and prevent security
+                breaches in real-time.
+              </p>
+              <a href="#">Learn More</a>
+            </div>
           </div>
         </div>
       </section>
@@ -201,9 +218,11 @@ const Home = () => {
           color: "#ffffff",
         }}
       >
-        <p>&copy; {new Date().getFullYear()} Woo Bin Park. Copy, share, and enjoy! No need to ask permission.</p>
+        <p>
+          &copy; {new Date().getFullYear()} Woo Bin Park. Copy, share, and
+          enjoy! No need to ask permission.
+        </p>
       </footer>
-
     </div>
   );
 };
