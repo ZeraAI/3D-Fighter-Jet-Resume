@@ -1,0 +1,98 @@
+/* Navigation bar styles */
+.navBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around; /* Evenly distribute the tabs */
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+    padding: 1rem 0;
+    z-index: 1000; /* Ensure it appears above the 3D canvas */
+  }
+  
+  .tabButton {
+    background: transparent; /* Transparent background for buttons */
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s; /* Smooth color transition on hover */
+  }
+  
+  .tabButton:hover {
+    color: #c9a86a; /* Rose gold hover effect */
+  }
+  
+  /* Card container styles */
+  .card {
+    position: absolute;
+    top: 10%; /* Center the card vertically */
+    left: 50%; /* Center the card horizontally */
+    transform: translateX(-50%); /* Correct centering */
+    width: 80%; /* Responsive width */
+    max-width: 500px; /* Maximum width for large screens */
+    background: white;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    padding: 2rem; /* Padding inside the card */
+    z-index: 1001; /* Ensure it appears above the navigation bar */
+  }
+  
+  /* Slide-in animation for the cards */
+  .slideIn {
+    animation: slideIn 0.5s forwards; /* Smooth slide-in effect */
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0; /* Start fully transparent */
+      transform: translateY(-50px); /* Start slightly above */
+    }
+    to {
+      opacity: 1; /* Fade in */
+      transform: translateY(0); /* Move to the final position */
+    }
+  }
+  
+  /* Card header styles */
+  .cardHeader {
+    display: flex;
+    justify-content: space-between; /* Space between title and close button */
+    align-items: center;
+  }
+  
+  .closeButton {
+    background: transparent; /* Transparent background for the close button */
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* Form styles for the contact form */
+/* Add a class for the form container */
+.formContainer input,
+.formContainer textarea {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Add a class for the submit button */
+.formContainer button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+  
