@@ -1,98 +1,135 @@
-/* Navigation bar styles */
-.navBar {
-    position: absolute;
+/* Main container */
+.container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Navigation bar */
+  .navBar {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(1, 23, 70, 0.66); /* Original color */
+    padding: 1rem;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    display: flex;
-    justify-content: space-around; /* Evenly distribute the tabs */
-    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
-    padding: 1rem 0;
-    z-index: 1000; /* Ensure it appears above the 3D canvas */
+    z-index: 2; /* Ensure tabs are above other content */
   }
   
   .tabButton {
-    background: transparent; /* Transparent background for buttons */
+    font-family: "Poppins", sans-serif;
+    font-size: 1.45rem;
     color: white;
+    background: none;
     border: none;
-    font-size: 1.2rem;
     cursor: pointer;
-    transition: color 0.3s; /* Smooth color transition on hover */
+    transition: color 0.29s ease;
   }
   
   .tabButton:hover {
-    color: #c9a86a; /* Rose gold hover effect */
+    color: #ffcccb; /* Hover effect */
   }
   
-  /* Card container styles */
-  .card {
-    position: absolute;
-    top: 10%; /* Center the card vertically */
-    left: 50%; /* Center the card horizontally */
-    transform: translateX(-50%); /* Correct centering */
-    width: 80%; /* Responsive width */
-    max-width: 500px; /* Maximum width for large screens */
+  /* Dimmed overlay */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dim the background */
+    z-index: 3; /* Above everything except the modal */
+  }
+  
+  /* Modal (centered popup card) */
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: white;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    padding: 2rem; /* Padding inside the card */
-    z-index: 1001; /* Ensure it appears above the navigation bar */
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Strong shadow */
+    z-index: 4; /* Above overlay */
+    width: 500px;
+    height: 300px; /* Fixed height for consistency */
+    text-align: center;
   }
   
-  /* Slide-in animation for the cards */
-  .slideIn {
-    animation: slideIn 0.5s forwards; /* Smooth slide-in effect */
-  }
-  
-  @keyframes slideIn {
-    from {
-      opacity: 0; /* Start fully transparent */
-      transform: translateY(-50px); /* Start slightly above */
-    }
-    to {
-      opacity: 1; /* Fade in */
-      transform: translateY(0); /* Move to the final position */
-    }
-  }
-  
-  /* Card header styles */
-  .cardHeader {
+  /* Modal header */
+  .modalHeader {
     display: flex;
-    justify-content: space-between; /* Space between title and close button */
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .modalHeader h2 {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    margin: 0;
   }
   
   .closeButton {
-    background: transparent; /* Transparent background for the close button */
+    background: none;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
+    color: #ff0000;
+    transition: color 0.3s ease;
   }
   
-  /* Form styles for the contact form */
-/* Add a class for the form container */
-.formContainer input,
-.formContainer textarea {
-  display: block;
-  width: 100%;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-/* Add a class for the submit button */
-.formContainer button {
-  display: block;
-  width: 100%;
-  padding: 1rem;
-  background-color: #2563eb;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
+  .closeButton:hover {
+    color: #ff6666;
+  }
+  
+  /* Modal content */
+  .modalContent {
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* Form styles */
+  .formContainer input,
+  .formContainer textarea,
+  .formContainer button {
+    font-family: "Poppins", sans-serif;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .formContainer button[type="submit"] {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .formContainer button[type="submit"]:hover {
+    background-color: #05246d;
+  }
+  
+  /* Prevent the link cursor from appearing on tabs */
+.tabButton {
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: none; /* Hide the default browser cursor */
+    transition: color 0.3s ease;
+  }
+  
+  .tabButton:hover {
+    color: #ffcccb; /* Optional hover effect */
+  }
   
