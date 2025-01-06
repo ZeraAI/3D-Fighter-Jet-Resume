@@ -64,7 +64,37 @@ const Tabs = ({ setCustomCursorHidden }) => {
               </button>
             </div>
             <div className={styles.modalContent}>
-              {activeTab === "Who am I?" && <p>I am a passionate software engineer...</p>}
+            {activeTab === "Who am I?" && (
+                <div className={styles.aboutMeSection}>
+                    <div className={styles.aboutMeImage}>
+                    <img src="/WooBin.png" alt="Woo Bin" />
+                    </div>
+                    <div className={styles.aboutMeText}>
+                    <h3>Let me introduce myself</h3>
+                    <p>
+                        Hi, I’m Woo Bin! Born in Korea and raised in the United States, I’ve
+                        had the privilege of experiencing life across multiple cultures. I
+                        even spent some time living in Norway, where I got to immerse myself
+                        in the wonderful culture and meet amazing people. These global
+                        experiences have shaped my perspective, and I hope to give back to the
+                        world as much as it has given to me.
+                    </p>
+                    <p>
+                        By trade, I’m a software developer, but my skills go far beyond
+                        coding! I’ve delved into security, music, and quality assurance.
+                        Whether it’s stress-testing servers, pushing programs to
+                        their limits, or intentionally "breaking" things to improve them, I
+                        thrive in uncovering potential and ensuring excellence.
+                    </p>
+                    <p>
+                        I’ve worked on impactful projects like developing useful programs and
+                        scripts, achieving security compliance, and releasing software used by
+                        thousands. Curious about the details? Head over to{" "}
+                        <strong>Career Achievements</strong> for the full detail!
+                    </p>
+                    </div>
+                </div>
+                )}
               {activeTab === "Career Achievements" && <p>Here are some of my career achievements...</p>}
               {activeTab === "Projects Made" && <p>Here are the projects I have worked on...</p>}
               {activeTab === "About this site" && (

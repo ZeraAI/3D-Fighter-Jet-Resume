@@ -255,3 +255,25 @@
     z-index: 9;
   }
   
+  /* about me */
+  .aboutMeSection {
+    display: flex;
+    align-items: center;
+    gap: 2rem; /* Space between image and text */
+    text-align: left;
+  }
+  
+  .aboutMeImage img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Crop and center the image */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  }
+  
+  .aboutMeText {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  
