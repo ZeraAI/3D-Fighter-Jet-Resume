@@ -27,6 +27,7 @@
     transition: color 0.29s ease, background-color 0.29s ease; /* Smooth transition */
     padding: 0.5rem 1rem; 
     border-radius: 5px; /* rounded corners */
+    cursor: none; /* Hide default cursor */
   }
   
   .navBar .tabButton:hover {
@@ -35,34 +36,34 @@
   }
   
   /* Dimmed overlay */
-  .overlay {
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Dim the background */
-    z-index: 3; /* Above everything except the modal */
+    z-index: 3; /* Above header */
   }
   
-/* Modal (centered popup card) */
-.modal {
+  /* Modal (centered popup card) */
+  .modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
     border-radius: 12px;
-    padding: 3rem; /* Increased padding for larger content */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); /* Stronger shadow for focus */
+    padding: 3rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     z-index: 4; /* Above overlay */
-    width: 80%; /* Increased width */
-    max-width: 1120px; /* Limit the maximum width */
-    height: 70%; /* Increased height */
-    max-height: 820px; /* Limit the maximum height */
-    overflow-y: auto; /* Enable scrolling if content overflows */
-    text-align: left; /* Align content to the left for better readability */
-  }
+    width: 80%;
+    max-width: 1120px;
+    height: 70%;
+    max-height: 820px;
+    overflow-y: auto;
+    text-align: left;
+  }  
   
   /* Modal header */
   .modalHeader {

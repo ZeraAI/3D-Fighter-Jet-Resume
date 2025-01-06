@@ -1,13 +1,14 @@
-import '../styles/globals.css';
-import CustomCursor from '../components/CustomCursor';
+import "../styles/globals.css";
+import CustomCursor from "../components/CustomCursor";
+import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
+  const [cursorHidden, setCursorHidden] = useState(false);
+
   return (
     <>
-      {/* Add the CustomCursor component globally */}
-      <CustomCursor />
-      {/* Render the active page */}
-      <Component {...pageProps} />
+      <CustomCursor hidden={cursorHidden} />
+      <Component {...pageProps} setCustomCursorHidden={setCursorHidden} />
     </>
   );
 }

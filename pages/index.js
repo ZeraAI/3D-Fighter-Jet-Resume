@@ -3,7 +3,7 @@ import FighterJetCanvas from "../components/FighterJetCanvas";
 import Tabs from "../components/Tabs";
 
 const Home = () => {
-  const [isModalActive, setModalActive] = useState(false);
+  const [customCursorHidden, setCustomCursorHidden] = useState(false);
 
   return (
     <div
@@ -15,8 +15,8 @@ const Home = () => {
         position: "relative",
       }}
     >
-      <FighterJetCanvas isModalActive={isModalActive} />
-      <Tabs setModalActive={setModalActive} />
+      <FighterJetCanvas />
+      <Tabs setCustomCursorHidden={setCustomCursorHidden} />
     </div>
   );
 };

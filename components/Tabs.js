@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/Tabs.module.css";
 
-const Tabs = ({ setModalActive }) => {
+const Tabs = ({ setCustomCursorHidden }) => {
   const [activeTab, setActiveTab] = useState(null);
 
   const toggleTab = (tab) => {
-    const isActive = activeTab === tab ? null : tab;
-    setActiveTab(isActive);
-    setModalActive(isActive !== null); // Update modal state
+    setActiveTab(activeTab === tab ? null : tab);
   };
+
+  useEffect(() => {
+    const body = document.body;
+    if (activeTab) {
+      setCustomCursorHidden(true); // Hide custom cursor
+      body.style.cursor = "auto"; // Show default cursor
+    } else {
+      setCustomCursorHidden(false); // Show custom cursor
+      body.style.cursor = "none"; // Hide default cursor
+    }
+
+    return () => {
+      body.style.cursor = "none"; // Cleanup cursor style
+    };
+  }, [activeTab, setCustomCursorHidden]);
 
   return (
     <div className={styles.container}>
@@ -28,27 +41,20 @@ const Tabs = ({ setModalActive }) => {
 
       {activeTab && (
         <>
-          <div className={styles.overlay} onClick={() => toggleTab(null)}></div>
+          <div className={styles.overlay} onClick={() => setActiveTab(null)}></div>
           <div className={styles.modal}>
             <div className={styles.modalHeader}>
               <h2>{activeTab}</h2>
-              <button className={styles.closeButton} onClick={() => toggleTab(null)}>
+              <button
+                className={styles.closeButton}
+                onClick={() => setActiveTab(null)}
+              >
                 X
               </button>
             </div>
             <div className={styles.modalContent}>
-              {activeTab === "Who am I?" && (
-                <>
-                    <h3>Welcome!</h3>
-                    <p>
-                    I’m Woo Bin Park, a developer passionate about technology, security, and impactful solutions.
-                    </p>
-                    <img src="/profile-picture.jpg" alt="Woo Bin Park pic" style={{ width: "100%", borderRadius: "8px" }} />
-                </>
-                )}
-              {activeTab === "Career Achievements" && (
-                <p>Here are some of my career achievements...</p>
-              )}
+              {activeTab === "Who am I?" && <p>I am a passionate software engineer...</p>}
+              {activeTab === "Career Achievements" && <p>Here are some of my career achievements...</p>}
               {activeTab === "Projects Made" && <p>Here are the projects I have worked on...</p>}
               {activeTab === "About this site" && (
                 <p>This site was created using React, Three.js, and Next.js...</p>

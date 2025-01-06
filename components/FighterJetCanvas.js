@@ -164,7 +164,7 @@ const CherryBlossoms = () => {
 };
 
 // Header Component
-const Header = ({ isModalActive }) => {
+const Header = () => {
   return (
     <div
       style={{
@@ -172,8 +172,7 @@ const Header = ({ isModalActive }) => {
         top: "30%",
         width: "100%",
         textAlign: "center",
-        zIndex: isModalActive ? 0 : 1000, // Hide behind modal
-        pointerEvents: isModalActive ? "none" : "auto", // Disable clicks when modal is active
+        zIndex: 1, // Lower priority than modal
         fontFamily: "'Inter', sans-serif",
       }}
     >
@@ -185,7 +184,15 @@ const Header = ({ isModalActive }) => {
           textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
         }}
       >
-        Woo Bin Park
+        <a
+          href="https://www.linkedin.com/in/woobin-park/"
+          style={{
+            textDecoration: "none",
+            color: "white",
+          }}
+        >
+          Woo Bin Park
+        </a>
       </h1>
       <p
         style={{
