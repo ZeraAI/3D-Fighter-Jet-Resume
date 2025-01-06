@@ -3,7 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload } from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Cloud } from "@react-three/drei";
-import * as THREE from "three"; 
+import * as THREE from "three";
 import CanvasLoader from "./CanvasLoader";
 
 // Lighting setup for the 3D scene
@@ -118,81 +118,6 @@ const FighterJet = ({ isMobile }) => {
   );
 };
 
-// Header Component
-const Header = () => {
-  const headerRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          } else {
-            entry.target.classList.remove("show");
-          }
-        });
-      },
-      { threshold: 0.1 } // Adjust visibility threshold as needed
-    );
-
-    if (headerRef.current) {
-      observer.observe(headerRef.current);
-    }
-
-    return () => {
-      if (headerRef.current) {
-        observer.unobserve(headerRef.current);
-      }
-    };
-  }, []);
-
-  return (
-    <div
-      ref={headerRef}
-      className="hidden" // Apply the `hidden` class initially
-      style={{
-        position: "absolute",
-        top: "30%",
-        width: "100%",
-        textAlign: "center",
-        zIndex: 1000,
-        fontFamily: "'Inter', sans-serif",
-      }}
-    >
-      <h1
-        style={{
-          fontSize: "6rem",
-          fontWeight: 700,
-          color: "white",
-          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-        }}
-      >
-        <a
-          href="https://www.linkedin.com/in/woobin-park/"
-          style={{
-            textDecoration: "none",
-            color: "white",
-          }}
-        >
-          Woo Bin Park
-        </a>
-      </h1>
-      <p
-        style={{
-          fontSize: "2.5rem",
-          fontWeight: 400,
-          color: "white",
-          marginTop: "0.5rem",
-          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-        }}
-      >
-        Software Engineer | Security Engineer
-      </p>
-    </div>
-  );
-};
-
 // Cherry Blossom Petal Component
 const CherryBlossoms = () => {
   const groupRef = useRef();
@@ -238,8 +163,47 @@ const CherryBlossoms = () => {
   );
 };
 
+// Header Component
+const Header = ({ isModalActive }) => {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: "30%",
+        width: "100%",
+        textAlign: "center",
+        zIndex: isModalActive ? 0 : 1000, // Hide behind modal
+        pointerEvents: isModalActive ? "none" : "auto", // Disable clicks when modal is active
+        fontFamily: "'Inter', sans-serif",
+      }}
+    >
+      <h1
+        style={{
+          fontSize: "6rem",
+          fontWeight: 700,
+          color: "white",
+          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        Woo Bin Park
+      </h1>
+      <p
+        style={{
+          fontSize: "2.5rem",
+          fontWeight: 400,
+          color: "white",
+          marginTop: "0.5rem",
+          textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        Software Engineer | Security Engineer
+      </p>
+    </div>
+  );
+};
+
 // Main Canvas component
-const FighterJetCanvas = () => {
+const FighterJetCanvas = ({ isModalActive }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -262,7 +226,7 @@ const FighterJetCanvas = () => {
         height: "100vh",
       }}
     >
-      <Header />
+      <Header isModalActive={isModalActive} />
       <Canvas frameloop="always" shadows dpr={[1, 2]} camera={{ position: [20, 3, 5], fov: 25 }}>
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
