@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://raw.githubusercontent.com/ZeraAI/3D-Fighter-Jet-Resume/refs/heads/main/public/favicon.ico" />
         <title>Woo Bin Park's Portfolio</title>
         <meta
           name="description"
