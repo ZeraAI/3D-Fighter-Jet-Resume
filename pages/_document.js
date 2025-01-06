@@ -4,6 +4,13 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <title>Woo Bin Park's Portfolio</title>
+        <meta
+          name="description"
+          content="Through a sea of cherry blossoms, a fighter jet carves its elegant path."
+        />
+
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
