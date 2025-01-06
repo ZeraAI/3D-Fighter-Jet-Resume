@@ -23,7 +23,7 @@ const SceneLights = () => (
 );
 
 // Cloud component with fixed positions
-const Clouds = () => {
+const Clouds = ({ pauseAnimation }) => {
   const fixedCloudPositions = [
     [-5, 9, -3],
     [6, -1, -5],
@@ -36,8 +36,8 @@ const Clouds = () => {
     const cloudRef = useRef();
 
     useFrame(() => {
-      if (cloudRef.current) {
-        cloudRef.current.rotation.y += 0.003;
+      if (!pauseAnimation && cloudRef.current) {
+        cloudRef.current.rotation.y += 0.003; // Animate only if not paused
       }
     });
 
@@ -59,11 +59,11 @@ const Clouds = () => {
 };
 
 // Fighter Jet model loader and animation
-const PlaneAnimation = ({ model, isMobile }) => {
+const PlaneAnimation = ({ model, isMobile, pauseAnimation }) => {
   const planeRef = useRef();
 
   useFrame(({ clock }) => {
-    if (planeRef.current) {
+    if (!pauseAnimation && planeRef.current) {
       const t = clock.getElapsedTime();
       planeRef.current.position.z = Math.sin(t) * 2;
       planeRef.current.position.y = Math.cos(t) * 1.5;
@@ -119,7 +119,7 @@ const FighterJet = ({ isMobile }) => {
 };
 
 // Cherry Blossom Petal Component
-const CherryBlossoms = () => {
+const CherryBlossoms = ({ pauseAnimation }) => {
   const groupRef = useRef();
   const particles = 200;
   const positions = new Float32Array(particles * 3);
@@ -133,7 +133,7 @@ const CherryBlossoms = () => {
   }
 
   useFrame(() => {
-    if (groupRef.current) {
+    if (!pauseAnimation && groupRef.current) {
       const particles = groupRef.current.geometry.attributes.position;
       for (let i = 0; i < particles.count; i++) {
         let y = particles.getY(i) - speeds[i];
@@ -210,7 +210,7 @@ const Header = () => {
 };
 
 // Main Canvas component
-const FighterJetCanvas = ({ isModalActive }) => {
+const FighterJetCanvas = ({ pauseAnimation, isModalActive }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -238,9 +238,9 @@ const FighterJetCanvas = ({ isModalActive }) => {
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
           <SceneLights />
-          <Clouds />
-          <FighterJet isMobile={isMobile} />
-          <CherryBlossoms />
+          <Clouds pauseAnimation={pauseAnimation} />
+          <FighterJet isMobile={isMobile} pauseAnimation={pauseAnimation} />
+          <CherryBlossoms pauseAnimation={pauseAnimation} />
         </Suspense>
         <Preload all />
       </Canvas>
