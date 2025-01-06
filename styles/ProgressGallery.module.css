@@ -1,0 +1,108 @@
+.galleryContainer {
+    position: relative;
+    text-align: center;
+  }
+  
+  .imageWrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .imageWrapper img {
+    width: 100%;
+    max-width: 600px; /* Ensures all images stay the same size */
+    max-height: 400px; /* Prevents images from being too tall */
+    object-fit: contain; /* Ensures the image is contained within its box */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for better visuals */
+  }
+  
+  .imageWrapper img:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+  }  
+  
+  .caption {
+    margin: 10px 0; /* Consistent spacing */
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    font-family: "Poppins", sans-serif; /* Ensure consistent font */
+  }
+  
+  .arrowLeft,
+  .arrowRight {
+    position: absolute;
+    top: 50%;
+    /* transform: translateY(-50%); */
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #FFD700;
+    cursor: pointer;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .arrowLeft {
+    left: 10px;
+  }
+  
+  .arrowRight {
+    right: 10px;
+  }
+  
+  .arrowLeft:hover,
+  .arrowRight:hover {
+    color: #FFD700;
+    background-color: #000000;
+    transform: scale(1.2); /* Slight animation for hover effect */
+  }
+  
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+  }
+  
+  .modalImage {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: contain;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  

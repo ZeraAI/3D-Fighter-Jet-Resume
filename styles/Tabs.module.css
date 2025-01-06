@@ -195,3 +195,63 @@
     color: #ffcccb; /* Optional hover effect */
 }
   
+
+/* Progress Gallery */
+.progressGallery {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .imageGallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .imageCard {
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  
+  .imageCard:hover {
+    transform: scale(1.05);
+  }
+  
+  .imageCard img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .imageCard p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #444;
+  }
+  
+  .modalImage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    max-width: 90%;
+    max-height: 90%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9;
+  }
+  
