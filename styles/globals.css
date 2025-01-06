@@ -101,18 +101,3 @@ button:active {
     transition: none;
   }
 }
-
-/* For accomplishments or certificates */
-/* Fly-in Animation */
-.fly-in {
-  opacity: 0;
-  filter: blur(5px);
-  transform: translateX(-100%);
-  transition: all 1s ease-in-out;
-}
-
-.fly-in-show {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateX(0);
-}
