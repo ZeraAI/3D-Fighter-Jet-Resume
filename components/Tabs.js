@@ -132,7 +132,64 @@ const Tabs = ({ setCustomCursorHidden }) => {
                   />
                 </>
               )}
-              {activeTab === "Projects Made" && <p>Here are the projects I have worked on...</p>}
+              {activeTab === "Projects Made" && (
+                <div className={styles.projectsSection}>
+                    <Card
+                    title="Fighter Jet Portfolio Website (This site!)"
+                    description="An interactive portfolio featuring 3D fighter jet animations and responsive design."
+                    technologies="React.js, Three.js, Next.js"
+                    outcome="Showcases creativity and technical expertise in web development."
+                    />
+                    <Card
+                    title="Network Monitoring Script"
+                    description="A globally released Python script that dynamically switches to the most reliable network connection."
+                    technologies="Python, Bash, Networking"
+                    outcome="Improved European network performance by 30%."
+                    />
+                    <Card
+                    title="AI Intrusion Detection System"
+                    description="Machine learning-based system to detect and prevent real-time security breaches."
+                    technologies="Python, TensorFlow, Scikit-learn"
+                    outcome="Identified 95% of intrusion attempts in testing."
+                    />
+                    <Card
+                    title="CatBot Chatbot"
+                    description="An NLP-driven chatbot capable of maintaining a user model and delivering relevant, conversational responses. Tracks user details like name, age, and preferences across conversations."
+                    technologies="Python, NLTK, BeautifulSoup, NumPy"
+                    outcome="Implemented advanced NLP techniques like cosine similarity and information retrieval to create a highly interactive user experience."
+                    />
+                    <Card
+                    title="MIPS Assembly Hexadecimal Decoder"
+                    description="A MIPS assembly program built in MARS to decode hexadecimal values into assembly commands, featuring a music jingle upon completion."
+                    technologies="MIPS Assembly, MARS IDE"
+                    outcome="Improved understanding of assembly language and low-level programming."
+                    />
+                    <Card
+                    title="Automatic News Alert Checker"
+                    description="A Python script that refreshes news pages to detect specific keywords and notifies users when they're mentioned."
+                    technologies="Python, BeautifulSoup, Pygame"
+                    outcome="Streamlined real-time news tracking with audio notifications via MP3 playback."
+                    />
+                    <Card
+                    title="Codecademy Open Source Contribution"
+                    description="Enhanced Codecademy's educational documentation by contributing detailed explanations and examples for programming concepts."
+                    technologies="Markdown, GitHub"
+                    outcome="Praised by professionals for clarity and educational value."
+                    />
+                    <Card
+                    title="Survey Website for Feedback"
+                    description="Designed and implemented a survey website to collect user feedback, starting with a concept in Figma and creating it entirely in HTML and CSS as a challenge."
+                    technologies="Figma, HTML, CSS"
+                    outcome="Demonstrated the ability to execute minimalistic yet functional designs using fundamental tools."
+                    />
+                    <Card
+                    title="Website Dedicated to Cats"
+                    description="Developed a playful website featuring cat-related content and tested the capabilities of early versions of ChatGPT in web development."
+                    technologies="HTML, CSS, JavaScript, ChatGPT API"
+                    outcome="Explored creative and technical limits of AI-assisted web development."
+                    />
+                </div>
+                )}
               {activeTab === "About this site" && (
                 <>
                   <p>
