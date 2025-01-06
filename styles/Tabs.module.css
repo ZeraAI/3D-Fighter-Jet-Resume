@@ -8,7 +8,7 @@
   .navBar {
     display: flex;
     justify-content: space-around;
-    background-color: rgba(1, 23, 70, 0.66); /* Original color */
+    background-color: rgba(1, 23, 70, 0.66);
     padding: 1rem;
     position: fixed;
     top: 0;
@@ -17,18 +17,21 @@
     z-index: 2; /* Ensure tabs are above other content */
   }
   
-  .tabButton {
+  .navBar .tabButton {
     font-family: "Poppins", sans-serif;
-    font-size: 1.45rem;
-    color: white;
+    font-size: 1.55rem;
+    color: white; /* Default color */
     background: none;
     border: none;
-    cursor: pointer;
-    transition: color 0.29s ease;
+    cursor: pointer; /* Custom cursor */
+    transition: color 0.29s ease, background-color 0.29s ease; /* Smooth transition */
+    padding: 0.5rem 1rem; 
+    border-radius: 5px; /* rounded corners */
   }
   
-  .tabButton:hover {
+  .navBar .tabButton:hover {
     color: #ffcccb; /* Hover effect */
+    background-color: rgba(255, 204, 203, 0.18);
   }
   
   /* Dimmed overlay */
@@ -42,20 +45,23 @@
     z-index: 3; /* Above everything except the modal */
   }
   
-  /* Modal (centered popup card) */
-  .modal {
+/* Modal (centered popup card) */
+.modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
-    border-radius: 8px;
-    padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Strong shadow */
+    border-radius: 12px;
+    padding: 3rem; /* Increased padding for larger content */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); /* Stronger shadow for focus */
     z-index: 4; /* Above overlay */
-    width: 500px;
-    height: 300px; /* Fixed height for consistency */
-    text-align: center;
+    width: 80%; /* Increased width */
+    max-width: 1120px; /* Limit the maximum width */
+    height: 70%; /* Increased height */
+    max-height: 820px; /* Limit the maximum height */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    text-align: left; /* Align content to the left for better readability */
   }
   
   /* Modal header */
@@ -68,14 +74,14 @@
   
   .modalHeader h2 {
     font-family: "Poppins", sans-serif;
-    font-size: 1.5rem;
+    font-size: 2rem; /* Larger font for better visibility */
     margin: 0;
   }
   
   .closeButton {
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2rem; /* Larger close button */
     cursor: pointer;
     color: #ff0000;
     transition: color 0.3s ease;
@@ -88,19 +94,20 @@
   /* Modal content */
   .modalContent {
     font-family: "Poppins", sans-serif;
-    font-size: 1rem;
+    font-size: 1.25rem; /* Slightly larger font size */
+    line-height: 1.8; /* Increased line spacing */
     color: #333;
   }
   
-  /* Form styles */
+  /* Form styles for "Contact Me" */
   .formContainer input,
   .formContainer textarea,
   .formContainer button {
     font-family: "Poppins", sans-serif;
-    padding: 0.5rem;
+    padding: 0.8rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-bottom: 1rem;
     width: 100%;
   }
@@ -109,14 +116,14 @@
     background-color: #2563eb;
     color: white;
     border: none;
-    padding: 0.75rem;
+    padding: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
   .formContainer button[type="submit"]:hover {
     background-color: #05246d;
-  }
+  }  
   
   /* Prevent the link cursor from appearing on tabs */
 .tabButton {
@@ -127,10 +134,9 @@
     border: none;
     cursor: none; /* Hide the default browser cursor */
     transition: color 0.3s ease;
-  }
+}
   
-  .tabButton:hover {
+.tabButton:hover {
     color: #ffcccb; /* Optional hover effect */
-  }
-  
+}
   

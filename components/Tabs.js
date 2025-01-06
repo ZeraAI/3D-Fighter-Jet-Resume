@@ -37,7 +37,15 @@ const Tabs = ({ setModalActive }) => {
               </button>
             </div>
             <div className={styles.modalContent}>
-              {activeTab === "Who am I?" && <p>I am a passionate software engineer...</p>}
+              {activeTab === "Who am I?" && (
+                <>
+                    <h3>Welcome!</h3>
+                    <p>
+                    I’m Woo Bin Park, a developer passionate about technology, security, and impactful solutions.
+                    </p>
+                    <img src="/profile-picture.jpg" alt="Woo Bin Park pic" style={{ width: "100%", borderRadius: "8px" }} />
+                </>
+                )}
               {activeTab === "Career Achievements" && (
                 <p>Here are some of my career achievements...</p>
               )}
